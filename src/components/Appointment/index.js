@@ -5,8 +5,9 @@ import "./styles.scss";
 
 export default function Appointment (props) {
 
-  return <article className="appointment">
-    {props.time}
-
-  </article>
+  return (
+    <article className="appointment">
+     {props.time}
+    </article>
+  )
 }
