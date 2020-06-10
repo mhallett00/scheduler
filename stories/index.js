@@ -11,8 +11,13 @@ import DayList from "components/DayList"
 import InterviewerListItem from "components/InterviewerListItem"
 import InterviewerList from "components/InterviewerList"
 import Appointment from "components/Appointment";
-import Header from "components/Appointment";
+import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
+import Show from "components/Appointment/Show";
+import Confirm from "components/Appointment/Confirm";
+import Status from "components/Appointment/Status";
+import Error from "components/Appointment/Error";
+
 
 storiesOf("Button", module)
   .addParameters({
@@ -136,6 +141,8 @@ storiesOf("Button", module)
           />
         ));
 
+        // APPOINTMENTS
+
         storiesOf("Appointment", module)
         .addParameters({
           backgrounds: [{ name: "white", value: "#fff", default: true }]
@@ -146,5 +153,36 @@ storiesOf("Button", module)
         )
         .add("Header", () => <Header time="12pm" />
         )
-      .add("Empty", () => <Empty onAdd={action("onAdd")} />
+        .add("Empty", () => <Empty onAdd={action("onAdd")} />
+        )
+        .add("Show", () =>
+          <Show 
+            student="Lydia Miller-Jones"
+            interviewer={interviewer}
+            onEdit={action("onEdit")} 
+            onDelete={action("onDelete")}
+          />
+        )
+        .add("Confirm", () => 
+          <Confirm 
+           message="Delete the appointment?"
+           onConfirm={action("onConfirm")}
+           onCancel={action("onCancel")}
+         />
+        )
+        .add("Status del", () => <Status message="Deleteing" />
+        )
+        .add("Status sav", () => <Status message="Saving" />
+        )
+        .add("Error del", () =>
+          <Error
+            message="Could not delete appointment"
+            onClose={action("onClose")} 
+          />
+        )
+        .add("Error sav", () =>
+          <Error
+            message="Could not save appointment"
+            onClose={action("onClose")} 
+          />
         )
