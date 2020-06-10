@@ -1,0 +1,15 @@
+import React from "react";
+import add from "../../../public/images/add.png"
+
+
+export default function Empty(props) {
+  return <main className="appointment__add">
+    <img
+      className="appointment__add-button"
+      src={add}
+      alt="Add"
+      onClick={props.onAdd}
+    />
+  </main>
+
+}
