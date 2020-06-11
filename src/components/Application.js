@@ -1,26 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DayList from "./DayList"
 import Appointment from "./Appointment";
+import axios from "axios";
 
 import "components/Application.scss";
-
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
 
 const appointments = [
   {
@@ -83,8 +66,9 @@ const appointments = [
 
 export default function Application(props) {
   const [ day , setDay ] = useState("Monday");
-  // const { appointments } = props
-  console.log(appointments)
+  const [ days , setDays ] = useState([]);
+
+  // console.log(appointments)
   const parsedAppointments = appointments.map(appointment => {
   
     return (
@@ -94,6 +78,15 @@ export default function Application(props) {
       />
     )
   })
+
+  useEffect (() => {
+
+    axios
+      .get("/api/days")
+      .then(res => setDays(res.data))
+      .catch(e => console.log(e))
+
+  }, [])
 
   return (
     <main className="layout">
