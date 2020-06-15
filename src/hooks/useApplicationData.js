@@ -15,18 +15,27 @@ export default function useApplicationData () {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
+      
     };
-    console.log(id, interview);
 
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
 
+    const days = 
+    state.days.map( day => {
+      if (state.day === day.name && !state.appointments[id].interview) {
+        day.spots--
+      }
+ 
+      return day;
+    });
+
     return axios.put(`/api/appointments/${id}`, { interview })
-      .then(() => 
-        setState({ ...state, appointments })
-      )
+    .then(() => {
+      setState({ ...state, appointments, days })
+    })
   }
 
   function cancelInterview(id){
@@ -40,9 +49,17 @@ export default function useApplicationData () {
       [id]: appointment
     }
 
+    const days = state.days.map( day => {
+      if (state.day === day.name) {
+        day.spots++
+      }
+ 
+      return day;
+    });
+
     return axios.delete(`/api/appointments/${id}`)
       .then(() =>
-        setState({...state, appointments})
+        setState({...state, appointments, days})
       )
     
   }
