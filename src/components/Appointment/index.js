@@ -32,17 +32,20 @@ export default function Appointment (props) {
   const onClose = () => transition(SHOW, true)
 
   function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
+    if ( name && interviewer) {
+      const interview = {
+        student: name,
+        interviewer
+      };
+  
+      transition(SAVING, true);
+  
+      props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(error => transition(ERROR_SAVE, true));
 
-    transition(SAVING, true);
-
-    props
-    .bookInterview(props.id, interview)
-    .then(() => transition(SHOW))
-    .catch(error => transition(ERROR_SAVE, true));
+    }
   
   }
 
@@ -56,7 +59,6 @@ export default function Appointment (props) {
     .catch(error => transition(ERROR_DELETE, true))
   }
 
-  console.log(props);
   return (
     <article className="appointment">
      {/* {props.time} */}
