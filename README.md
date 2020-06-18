@@ -7,12 +7,15 @@ Completed by Michael Hallett at Lighthouse Labs
 ## Final Product
 
 Display of interviews by currently selected day
+
 !["Screenshot of a typical display of interviews by day"](https://raw.githubusercontent.com/mhallett00/scheduler/master/public/images/dayview.png)
 
 Hover to hightlight contexutal edit and delete buttons
+
 !["Screenshot of hightlight contexutal edit and delete buttons"](https://raw.githubusercontent.com/mhallett00/scheduler/master/public/images/hightlight.png)
 
 Interview Edit display
+
 !["Screenshot of edit form"](https://raw.githubusercontent.com/mhallett00/scheduler/master/public/images/editing.png)
 
 ## Setup
