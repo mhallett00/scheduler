@@ -26,7 +26,8 @@ export default function useApplicationData () {
     const days = 
     state.days.map( day => {
       if (state.day === day.name && !state.appointments[id].interview) {
-        day.spots--
+        const newSpots = {...day, spots: day.spots - 1}
+        return newSpots
       }
  
       return day;
@@ -51,7 +52,8 @@ export default function useApplicationData () {
 
     const days = state.days.map( day => {
       if (state.day === day.name) {
-        day.spots++
+        const newSpots = {...day, spots: day.spots + 1}
+        return newSpots
       }
  
       return day;
@@ -72,7 +74,8 @@ export default function useApplicationData () {
       Promise.resolve( axios.get("/api/interviewers"))
     ])
       .then((all) => {
-        setState(() => ({ 
+        setState((prev) => ({ 
+          ...prev,
           days: all[0].data, 
           appointments: all[1].data,
           interviewers: all[2].data
