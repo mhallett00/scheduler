@@ -30,7 +30,7 @@ export default function Appointment(props) {
   const onCancel = () => back();
   const onDelete = () => transition(CONFIRMDEL);
   const onEdit = () => transition(EDIT);
-  const onClose = () => transition(SHOW, true);
+  const onClose = () => back();
 
   function save(name, interviewer) {
     if (name && interviewer) {
@@ -58,7 +58,7 @@ export default function Appointment(props) {
   }
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={onAdd} />}
       {mode === SHOW && (
