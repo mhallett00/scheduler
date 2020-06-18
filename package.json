@@ -1,7 +1,8 @@
 {
   "name": "scheduler",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "author": "Michael Hallett",
   "dependencies": {
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
